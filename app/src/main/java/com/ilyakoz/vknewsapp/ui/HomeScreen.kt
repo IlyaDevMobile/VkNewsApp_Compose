@@ -15,6 +15,7 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.ilyakoz.vknewsapp.MainViewModel
+import com.ilyakoz.vknewsapp.domain.PostComment
 
 @OptIn(ExperimentalMaterialApi::class, ExperimentalFoundationApi::class)
 @Composable
@@ -23,6 +24,7 @@ fun HomeScreen(
     paddingValues: PaddingValues
 ) {
     val feedPosts = viewModel.feedPosts.observeAsState(listOf())
+
 
 
     LazyColumn(
@@ -35,6 +37,7 @@ fun HomeScreen(
         ),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
+
         items(
             feedPosts.value,
             key = { feedPost ->
