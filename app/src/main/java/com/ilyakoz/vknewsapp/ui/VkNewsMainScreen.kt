@@ -10,20 +10,23 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.res.stringResource
+import androidx.navigation.compose.currentBackStackEntryAsState
 import com.ilyakoz.vknewsapp.MainViewModel
 import com.ilyakoz.vknewsapp.NavigationItem
+import com.ilyakoz.vknewsapp.navigation.AppNavGraph
+import com.ilyakoz.vknewsapp.navigation.rememberNavigationState
 
 @Composable
 fun MainScreen(viewModel: MainViewModel) {
-    val selectedNavItem by viewModel.selectedNavItem.observeAsState(NavigationItem.Home)
+    val navigationState = rememberNavigationState()
 
 
     Scaffold(
         bottomBar = {
             NavigationBar {
-
+                val navBackStackEntry by navigationState.navHostController.currentBackStackEntryAsState()
+                val currencyRoute = navBackStackEntry?.destination?.route
 
                 val items = listOf(
                     NavigationItem.Home,
@@ -32,8 +35,8 @@ fun MainScreen(viewModel: MainViewModel) {
                 )
                 items.forEach { item ->
                     NavigationBarItem(
-                        selected = selectedNavItem == item,
-                        onClick = { viewModel.selectedNavItem(item) },
+                        selected = currencyRoute == item.screen.route,
+                        onClick = { navigationState.navigateTo(item.screen.route) },
                         icon = {
                             Icon(
                                 item.icon,
@@ -52,17 +55,19 @@ fun MainScreen(viewModel: MainViewModel) {
 
         }
     ) { paddingValues ->
-        when (selectedNavItem) {
-            NavigationItem.Home -> {
-                HomeScreen(viewModel = viewModel, paddingValues = paddingValues)
-            }
-
-            NavigationItem.Favourite -> Text(text = "Favourite")
-            NavigationItem.Profile -> Text(text = "Profile")
-        }
-
-
+        AppNavGraph(
+            navHostController = navigationState.navHostController,
+            homeScreenContent = {
+                HomeScreen(
+                    viewModel = viewModel,
+                    paddingValues = paddingValues
+                )
+            },
+            favouriteScreenContent = { Text(text = "Favourite") },
+            profileScreenContent = { Text(text = "Profile") }
+        )
     }
 }
+
 
 
