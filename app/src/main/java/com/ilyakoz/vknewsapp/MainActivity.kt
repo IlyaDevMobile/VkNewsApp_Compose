@@ -4,9 +4,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import androidx.lifecycle.ViewModelProvider
 import com.ilyakoz.vknewsapp.ui.theme.VkNewsAppTheme
-import com.ilyakoz.vknewsapp.ui.theme.MainScreen
+import com.ilyakoz.vknewsapp.ui.MainScreen
 
 class MainActivity : ComponentActivity() {
 
