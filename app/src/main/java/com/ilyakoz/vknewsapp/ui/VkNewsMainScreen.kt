@@ -9,18 +9,26 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.ilyakoz.vknewsapp.MainViewModel
+import com.ilyakoz.vknewsapp.NewsFeedViewModel
 import com.ilyakoz.vknewsapp.NavigationItem
+import com.ilyakoz.vknewsapp.domain.FeedPost
 import com.ilyakoz.vknewsapp.navigation.AppNavGraph
 import com.ilyakoz.vknewsapp.navigation.rememberNavigationState
 
 @Composable
-fun MainScreen(viewModel: MainViewModel) {
+fun MainScreen() {
     val navigationState = rememberNavigationState()
 
+
+    val commentsPost : MutableState<FeedPost? > = remember {
+        mutableStateOf(null)
+    }
 
     Scaffold(
         bottomBar = {
@@ -58,10 +66,19 @@ fun MainScreen(viewModel: MainViewModel) {
         AppNavGraph(
             navHostController = navigationState.navHostController,
             homeScreenContent = {
-                HomeScreen(
-                    viewModel = viewModel,
-                    paddingValues = paddingValues
-                )
+                if (commentsPost.value == null) {
+                    HomeScreen(
+                        paddingValues = paddingValues,
+                        onCommentClickListener = {
+                            commentsPost.value = it
+                        }
+                    )
+                } else {
+                    CommentsScreen {
+                        commentsPost.value = null
+
+                    }
+                }
             },
             favouriteScreenContent = { Text(text = "Favourite") },
             profileScreenContent = { Text(text = "Profile") }
