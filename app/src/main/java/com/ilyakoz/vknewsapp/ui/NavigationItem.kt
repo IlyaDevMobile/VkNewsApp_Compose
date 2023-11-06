@@ -1,10 +1,11 @@
-package com.ilyakoz.vknewsapp
+package com.ilyakoz.vknewsapp.ui
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.ui.graphics.vector.ImageVector
+import com.ilyakoz.vknewsapp.R
 import com.ilyakoz.vknewsapp.navigation.Screen
 
 sealed class NavigationItem(

@@ -7,16 +7,18 @@ import com.ilyakoz.vknewsapp.domain.FeedPost
 import com.ilyakoz.vknewsapp.domain.PostComment
 import com.ilyakoz.vknewsapp.ui.CommentsScreenState
 
-class CommentsViewModel : ViewModel() {
+class CommentsViewModel(
+    feedPost: FeedPost
+) : ViewModel() {
 
     private val _screenState = MutableLiveData<CommentsScreenState>(CommentsScreenState.Initial)
     val screenState: LiveData<CommentsScreenState> = _screenState
 
     init {
-        loadComments(FeedPost())
+        loadComments(feedPost)
     }
 
-    fun loadComments(feedPost: FeedPost){
+    private fun loadComments(feedPost: FeedPost){
         val comments = mutableListOf<PostComment>().apply {
             repeat(10){
                 add(PostComment(id = it))
