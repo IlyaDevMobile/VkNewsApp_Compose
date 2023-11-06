@@ -15,8 +15,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.ilyakoz.vknewsapp.NewsFeedViewModel
-import com.ilyakoz.vknewsapp.NavigationItem
 import com.ilyakoz.vknewsapp.domain.FeedPost
 import com.ilyakoz.vknewsapp.navigation.AppNavGraph
 import com.ilyakoz.vknewsapp.navigation.rememberNavigationState
@@ -26,7 +24,7 @@ fun MainScreen() {
     val navigationState = rememberNavigationState()
 
 
-    val commentsPost : MutableState<FeedPost? > = remember {
+    val commentsPost: MutableState<FeedPost?> = remember {
         mutableStateOf(null)
     }
 
@@ -74,10 +72,13 @@ fun MainScreen() {
                         }
                     )
                 } else {
-                    CommentsScreen {
-                        commentsPost.value = null
+                    CommentsScreen (
+                        onBackPressed = {
+                            commentsPost.value = null
+                        },
+                        feedPost = commentsPost.value!!
 
-                    }
+                    )
                 }
             },
             favouriteScreenContent = { Text(text = "Favourite") },
