@@ -76,7 +76,7 @@ fun MainScreen() {
                 HomeScreen(
                     paddingValues = paddingValues,
                     onCommentClickListener = {
-                        navigationState.navigationToComments()
+                        navigationState.navigationToComments(it)
                     }
                 )
 
