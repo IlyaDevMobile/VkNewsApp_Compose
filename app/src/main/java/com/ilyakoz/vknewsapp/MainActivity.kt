@@ -19,7 +19,20 @@ class MainActivity : ComponentActivity() {
         setContent {
             VkNewsAppTheme {
 
+                val launcher = rememberLauncherForActivityResult(
+                    contract = VK.getVKAuthActivityResultContract()
+                ) {
+                    when (it) {
+                        is VKAuthenticationResult.Success -> {
+                            Log.d("MainActivity", "Success")
+                        }
 
+                        is VKAuthenticationResult.Failed -> {
+                            Log.d("MainActivity", "Failed")
+                        }
+                    }
+                }
+                launcher.launch(listOf(VKScope.WALL))
 
                 MainScreen()
             }
