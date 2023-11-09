@@ -5,6 +5,9 @@ import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.SideEffect
+import com.ilyakoz.vknewsapp.ui.LoginScreen
 import com.ilyakoz.vknewsapp.ui.MainScreen
 import com.ilyakoz.vknewsapp.ui.theme.VkNewsAppTheme
 import com.vk.api.sdk.VK
@@ -17,24 +20,28 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            VkNewsAppTheme {ff
+            VkNewsAppTheme {
 
-                val launcher = rememberLauncherForActivityResult(
-                    contract = VK.getVKAuthActivityResultContract()
-                ) {
-                    when (it) {
-                        is VKAuthenticationResult.Success -> {
-                            Log.d("MainActivity", "Success")
-                        }
+//                val launcher = rememberLauncherForActivityResult(
+//                    contract = VK.getVKAuthActivityResultContract()
+//                ) {
+//                    when (it) {
+//                        is VKAuthenticationResult.Success -> {
+//                            Log.d("MainActivity", "Success")
+//                        }
+//
+//                        is VKAuthenticationResult.Failed -> {
+//                            Log.d("MainActivity", "Failed")
+//                        }
+//                    }
+//                }
+//                LaunchedEffect(key1 = Unit ) {
+//                    launcher.launch(listOf(VKScope.WALL))
+//                }
+//                MainScreen()
+                LoginScreen {
 
-                        is VKAuthenticationResult.Failed -> {
-                            Log.d("MainActivity", "Failed")
-                        }
-                    }
                 }
-                launcher.launch(listOf(VKScope.WALL))
-
-                MainScreen()
             }
 
         }
