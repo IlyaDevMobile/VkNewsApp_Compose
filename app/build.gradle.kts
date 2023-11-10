@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-parcelize")
 }
 
 android {
@@ -80,6 +81,13 @@ dependencies {
 
     implementation("com.vk:android-sdk-core:4.1.0")
     implementation("com.vk:android-sdk-api:4.1.0")
+
+
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.11.0")
+    implementation("io.coil-kt:coil-compose:2.5.0")
+
+
 
 
 }

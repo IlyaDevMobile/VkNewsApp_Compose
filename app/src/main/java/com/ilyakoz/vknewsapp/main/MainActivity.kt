@@ -1,4 +1,4 @@
-package com.ilyakoz.vknewsapp
+package com.ilyakoz.vknewsapp.main
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -6,8 +6,6 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.ilyakoz.vknewsapp.ui.LoginScreen
-import com.ilyakoz.vknewsapp.ui.MainScreen
 import com.ilyakoz.vknewsapp.ui.theme.VkNewsAppTheme
 import com.vk.api.sdk.VK
 import com.vk.api.sdk.auth.VKScope
@@ -34,7 +32,7 @@ class MainActivity : ComponentActivity() {
                     }
                     is AuthState.NotAuthorized -> {
                         LoginScreen {
-                            launcher.launch(listOf(VKScope.WALL))
+                            launcher.launch(listOf(VKScope.WALL,VKScope.FRIENDS))
 
                         }
                     }

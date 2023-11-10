@@ -1,4 +1,4 @@
-package com.ilyakoz.vknewsapp
+package com.ilyakoz.vknewsapp.main
 
 sealed class AuthState {
 

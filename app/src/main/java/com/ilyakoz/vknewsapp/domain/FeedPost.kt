@@ -1,18 +1,15 @@
 package com.ilyakoz.vknewsapp.domain
 
-import com.ilyakoz.vknewsapp.R
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class FeedPost(
-    val id : Int = 0,
-    val communityName : String = "/dev/null",
-    val publicationDate : String  = "12:00",
-    val avatarResId: Int = R.drawable.avatar,
-    val contentText: String = "Здесь могла бы быть ваша реклама",
-    val contentImageResId : Int = R.drawable.avatar,
-    val statistics: List<StatisticItem> = listOf(
-        StatisticItem(type = StatisticType.VIEWS,966),
-        StatisticItem(type = StatisticType.SHARES,6),
-        StatisticItem(type = StatisticType.COMMENTS,8),
-        StatisticItem(type = StatisticType.LIKES,27)
-    )
-)
+    val id : String,
+    val communityName : String,
+    val publicationDate : String,
+    val communityImageUrl: String,
+    val contentText: String,
+    val contentImageUrl : String?,
+    val statistics: List<StatisticItem>
+) : Parcelable
