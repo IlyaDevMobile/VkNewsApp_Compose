@@ -1,6 +1,7 @@
-package com.ilyakoz.vknewsapp.ui
+package com.ilyakoz.vknewsapp.main
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -20,6 +21,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.ilyakoz.vknewsapp.R
+import com.ilyakoz.vknewsapp.ui.theme.Black500
+import com.ilyakoz.vknewsapp.ui.theme.Black900
 import com.ilyakoz.vknewsapp.ui.theme.Violet
 
 @Composable
@@ -27,7 +30,9 @@ fun LoginScreen(
     onLoginClick: () -> Unit
 ) {
     Box(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = Black500),
         contentAlignment = Alignment.Center
     ) {
         Column(
@@ -44,7 +49,7 @@ fun LoginScreen(
             ElevatedButton(
                 onClick = { onLoginClick() },
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Violet,
+                    containerColor = Black900,
                     contentColor = Color.White
                 )
             ) {

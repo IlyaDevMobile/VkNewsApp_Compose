@@ -1,4 +1,4 @@
-package com.ilyakoz.vknewsapp.ui
+package com.ilyakoz.vknewsapp.main
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle

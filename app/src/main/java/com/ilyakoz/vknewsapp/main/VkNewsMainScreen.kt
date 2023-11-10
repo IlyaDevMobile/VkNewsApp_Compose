@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalMaterial3Api::class)
 
-package com.ilyakoz.vknewsapp.ui
+package com.ilyakoz.vknewsapp.main
 
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -9,17 +9,14 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.ilyakoz.vknewsapp.domain.FeedPost
+import com.ilyakoz.vknewsapp.comments.CommentsScreen
 import com.ilyakoz.vknewsapp.navigation.AppNavGraph
-import com.ilyakoz.vknewsapp.navigation.Screen
 import com.ilyakoz.vknewsapp.navigation.rememberNavigationState
+import com.ilyakoz.vknewsapp.news.NewsFeedScreen
 
 @Composable
 fun MainScreen() {
@@ -73,7 +70,7 @@ fun MainScreen() {
             navHostController = navigationState.navHostController,
             newFeedScreenContent = {
 
-                HomeScreen(
+                NewsFeedScreen(
                     paddingValues = paddingValues,
                     onCommentClickListener = {
                         navigationState.navigationToComments(it)

@@ -1,4 +1,4 @@
-package com.ilyakoz.vknewsapp
+package com.ilyakoz.vknewsapp.comments
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

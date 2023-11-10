@@ -1,4 +1,4 @@
-package com.ilyakoz.vknewsapp.ui
+package com.ilyakoz.vknewsapp.comments
 
 import com.ilyakoz.vknewsapp.domain.FeedPost
 import com.ilyakoz.vknewsapp.domain.PostComment
