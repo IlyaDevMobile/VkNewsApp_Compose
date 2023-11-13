@@ -1,6 +1,5 @@
 package com.ilyakoz.vknewsapp.news
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -20,7 +19,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.modifier.modifierLocalMapOf
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
@@ -52,6 +53,7 @@ fun PostCard(
             onCommentsClickListener = onCommentsClickListener,
             onShareClickListener = onShareClickListener,
             onViewsClickListener = onViewsClickListener,
+            isFavourite = feedPost.isFavourite
         )
     }
 }
@@ -62,7 +64,8 @@ private fun Statistics(
     onLikeClickListener: (StatisticItem) -> Unit,
     onShareClickListener: (StatisticItem) -> Unit,
     onCommentsClickListener: (StatisticItem) -> Unit,
-    onViewsClickListener: (StatisticItem) -> Unit
+    onViewsClickListener: (StatisticItem) -> Unit,
+    isFavourite: Boolean,
 ) {
     Row(
         Modifier.fillMaxWidth(),
@@ -94,11 +97,12 @@ private fun Statistics(
         )
         val likesItem = statistics.getItemByType(StatisticType.LIKES)
         IconWithText(
-            image = R.drawable.baseline_favorite_border_24,
-            text = likesItem.count.toString(),
+            image = if (isFavourite) R.drawable.ic_like else R.drawable.ic_dont_like,
+            text = formatStatisticCount(likesItem.count),
             onItemClickListener = {
                 onLikeClickListener(likesItem)
-            }
+            },
+            tint = if (isFavourite) Color.Red else MaterialTheme.colorScheme.onSecondary
         )
 
     }
@@ -112,7 +116,8 @@ private fun List<StatisticItem>.getItemByType(type: StatisticType): StatisticIte
 private fun IconWithText(
     image: Int,
     text: String,
-    onItemClickListener: () -> Unit
+    onItemClickListener: () -> Unit,
+    tint: Color = MaterialTheme.colorScheme.onSecondary
 ) {
     Row(modifier = Modifier
         .padding(8.dp)
@@ -120,8 +125,10 @@ private fun IconWithText(
     ) {
 
         Icon(
+            modifier = Modifier.size(20.dp),
             painter = painterResource(id = image),
-            contentDescription = null
+            contentDescription = null,
+            tint = tint
         )
         Spacer(Modifier.width(4.dp))
         Text(text = text)
@@ -198,5 +205,15 @@ private fun PostHeader(
             contentDescription = "",
             tint = MaterialTheme.colorScheme.onSecondary
         )
+    }
+}
+
+private fun formatStatisticCount(count: Int): String {
+    return if (count > 100_000) {
+        String.format("%sK", (count / 1000))
+    } else if (count > 1000) {
+        String.format("%.1fk", (count / 1000f))
+    } else {
+        count.toString()
     }
 }
