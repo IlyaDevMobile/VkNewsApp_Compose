@@ -21,7 +21,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.modifier.modifierLocalMapOf
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
@@ -53,7 +52,7 @@ fun PostCard(
             onCommentsClickListener = onCommentsClickListener,
             onShareClickListener = onShareClickListener,
             onViewsClickListener = onViewsClickListener,
-            isFavourite = feedPost.isFavourite
+            isFavourite = feedPost.isLiked
         )
     }
 }
