@@ -22,11 +22,23 @@ class NewsFeedRepository(application: Application) {
     val feedPosts: List<FeedPost>
         get() = _feedPosts.toList()
 
+
+    private var nextFrom: String? = null
+
     suspend fun loadRecommendations(): List<FeedPost> {
-        val response = apiService.loadMyPosts(getAccessToken())
+        val startFrom = nextFrom
+
+        if (startFrom == null && feedPosts.isNotEmpty()) return feedPosts
+        val response = if (startFrom == null) {
+            apiService.loadMyPosts(getAccessToken())
+        } else {
+            apiService.loadMyPosts(getAccessToken(), startFrom)
+
+        }
+        nextFrom = response.newsFeedContent.nextFrom
         val posts = mapper.mapResponseToPosts(response)
         _feedPosts.addAll(posts)
-        return posts
+        return feedPosts
     }
 
     private fun getAccessToken(): String {
