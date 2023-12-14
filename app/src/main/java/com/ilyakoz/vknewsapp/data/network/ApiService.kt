@@ -14,6 +14,13 @@ interface ApiService {
     ): NewsFeedResponseDto
 
 
+    @GET("newsfeed.getRecommended?v=5.154")
+    suspend fun loadMyPosts(
+        @Query("access_token") token: String,
+        @Query("start_from") startFrom: String
+    ): NewsFeedResponseDto
+
+
     @GET("likes.add?v=5.154")
     suspend fun addLike(
         @Query("access_token") token: String,
