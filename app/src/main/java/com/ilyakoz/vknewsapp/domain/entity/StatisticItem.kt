@@ -1,4 +1,4 @@
-package com.ilyakoz.vknewsapp.domain
+package com.ilyakoz.vknewsapp.domain.entity
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
