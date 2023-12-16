@@ -1,7 +1,10 @@
 package com.ilyakoz.vknewsapp.data.mapper
 
+import com.ilyakoz.vknewsapp.data.model.CommentsContentDto
+import com.ilyakoz.vknewsapp.data.model.CommentsResponseDto
 import com.ilyakoz.vknewsapp.data.model.NewsFeedResponseDto
 import com.ilyakoz.vknewsapp.domain.FeedPost
+import com.ilyakoz.vknewsapp.domain.PostComment
 import com.ilyakoz.vknewsapp.domain.StatisticItem
 import com.ilyakoz.vknewsapp.domain.StatisticType
 import java.text.SimpleDateFormat
@@ -40,8 +43,27 @@ class NewsFeedMapper {
         return result
     }
 
+    fun mapResponseToComments(response: CommentsResponseDto): List<PostComment> {
+        val result = mutableListOf<PostComment>()
+        val comments = response.content.comments
+        val profile = response.content.profiles
+        for (comment in comments) {
+            if (comment.text.isBlank()) continue
+            val author = profile.firstOrNull { it.id == comment.authorId } ?: continue
+            val postComment = PostComment(
+                id = comment.id,
+                authorName = "${author.firstName} ${author.lastName}",
+                authorAvatarUrl = author.avatarUrl,
+                commentText = comment.text,
+                publicationData = mapTimestampToDate(comment.date)
+            )
+            result.add(postComment)
+        }
+        return result
+    }
+
     private fun mapTimestampToDate(timestamp: Long): String {
-        val date = Date(timestamp)
+        val date = Date(timestamp * 1000)
         return SimpleDateFormat("d MMMM yyyy, hh:mm", Locale.getDefault()).format(date)
 
     }

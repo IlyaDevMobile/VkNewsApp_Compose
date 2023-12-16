@@ -1,6 +1,8 @@
 package com.ilyakoz.vknewsapp.comments
 
+import android.app.Application
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -12,6 +14,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -24,11 +27,16 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import coil.compose.AsyncImage
+import com.ilyakoz.vknewsapp.R
 import com.ilyakoz.vknewsapp.domain.FeedPost
 import com.ilyakoz.vknewsapp.domain.PostComment
 import com.ilyakoz.vknewsapp.ui.theme.VkNewsAppTheme
@@ -40,7 +48,7 @@ fun CommentsScreen(
     feedPost: FeedPost
 ) {
     val viewModel: CommentsViewModel = viewModel(
-        factory = CommentsViewModelFactory(feedPost)
+        factory = CommentsViewModelFactory(feedPost, LocalContext.current.applicationContext as Application)
     )
     val screenState = viewModel.screenState.observeAsState(CommentsScreenState.Initial)
     val currentState = screenState.value
@@ -51,7 +59,7 @@ fun CommentsScreen(
             topBar = {
                 TopAppBar(
                     title = {
-                        Text(text = "Comments for feedPost Id: ${currentState.feedPost.contentText}")
+                        Text(text = stringResource(R.string.comments))
                     },
                     navigationIcon = {
                         IconButton(onClick = { onBackPressed() }) {
@@ -71,7 +79,8 @@ fun CommentsScreen(
                     start = 8.dp,
                     end = 8.dp,
                     bottom = 72.dp
-                )
+                ),
+                verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 items(
                     items = currentState.comments,
@@ -100,16 +109,17 @@ private fun CommentItem(
                 vertical = 4.dp
             )
     ) {
-        Image(
+        AsyncImage(
             modifier = Modifier
-                .size(24.dp),
-            painter = painterResource(id = comment.authorAvatarId),
+                .size(48.dp)
+                .clip(CircleShape),
+            model = comment.authorAvatarUrl,
             contentDescription = null
         )
         Spacer(modifier = Modifier.width(8.dp))
         Column {
             Text(
-                text = "${comment.authorName} CommentId: ${comment.id}",
+                text = comment.authorName,
                 color = MaterialTheme.colorScheme.onBackground,
                 fontSize = 12.sp
             )
@@ -129,13 +139,4 @@ private fun CommentItem(
 
     }
 
-}
-
-@Preview
-@Composable
-private fun PreviewComment() {
-    VkNewsAppTheme {
-        CommentItem(comment = PostComment(id = 0))
-
-    }
 }
