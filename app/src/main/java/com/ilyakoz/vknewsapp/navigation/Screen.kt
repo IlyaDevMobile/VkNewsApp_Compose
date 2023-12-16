@@ -2,7 +2,7 @@ package com.ilyakoz.vknewsapp.navigation
 
 import android.net.Uri
 import com.google.gson.Gson
-import com.ilyakoz.vknewsapp.domain.FeedPost
+import com.ilyakoz.vknewsapp.domain.entity.FeedPost
 
 sealed class Screen(
     val route: String

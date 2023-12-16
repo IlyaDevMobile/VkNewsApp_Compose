@@ -25,9 +25,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.ilyakoz.vknewsapp.R
-import com.ilyakoz.vknewsapp.domain.FeedPost
-import com.ilyakoz.vknewsapp.domain.StatisticItem
-import com.ilyakoz.vknewsapp.domain.StatisticType
+import com.ilyakoz.vknewsapp.domain.entity.FeedPost
+import com.ilyakoz.vknewsapp.domain.entity.StatisticItem
+import com.ilyakoz.vknewsapp.domain.entity.StatisticType
 
 
 @Composable
@@ -37,7 +37,7 @@ fun PostCard(
     onLikeClickListener: (StatisticItem) -> Unit,
     onCommentsClickListener: (StatisticItem) -> Unit,
 
-) {
+    ) {
     Card(
         modifier = modifeir
     ) {

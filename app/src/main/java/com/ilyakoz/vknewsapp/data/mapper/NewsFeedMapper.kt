@@ -1,12 +1,11 @@
 package com.ilyakoz.vknewsapp.data.mapper
 
-import com.ilyakoz.vknewsapp.data.model.CommentsContentDto
 import com.ilyakoz.vknewsapp.data.model.CommentsResponseDto
 import com.ilyakoz.vknewsapp.data.model.NewsFeedResponseDto
-import com.ilyakoz.vknewsapp.domain.FeedPost
-import com.ilyakoz.vknewsapp.domain.PostComment
-import com.ilyakoz.vknewsapp.domain.StatisticItem
-import com.ilyakoz.vknewsapp.domain.StatisticType
+import com.ilyakoz.vknewsapp.domain.entity.FeedPost
+import com.ilyakoz.vknewsapp.domain.entity.PostComment
+import com.ilyakoz.vknewsapp.domain.entity.StatisticItem
+import com.ilyakoz.vknewsapp.domain.entity.StatisticType
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale

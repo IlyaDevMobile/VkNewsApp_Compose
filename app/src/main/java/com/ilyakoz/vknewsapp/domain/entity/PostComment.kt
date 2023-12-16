@@ -1,4 +1,4 @@
-package com.ilyakoz.vknewsapp.domain
+package com.ilyakoz.vknewsapp.domain.entity
 
 data class PostComment(
     val id : Long,

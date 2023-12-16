@@ -1,7 +1,7 @@
 package com.ilyakoz.vknewsapp.comments
 
-import com.ilyakoz.vknewsapp.domain.FeedPost
-import com.ilyakoz.vknewsapp.domain.PostComment
+import com.ilyakoz.vknewsapp.domain.entity.FeedPost
+import com.ilyakoz.vknewsapp.domain.entity.PostComment
 
 sealed class CommentsScreenState{
 
