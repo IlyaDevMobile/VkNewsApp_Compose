@@ -1,4 +1,4 @@
-package com.ilyakoz.vknewsapp.main
+package com.ilyakoz.vknewsapp.presentation.main
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

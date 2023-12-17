@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalMaterial3Api::class)
 
-package com.ilyakoz.vknewsapp.main
+package com.ilyakoz.vknewsapp.presentation.main
 
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -13,10 +13,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.ilyakoz.vknewsapp.comments.CommentsScreen
-import com.ilyakoz.vknewsapp.navigation.AppNavGraph
-import com.ilyakoz.vknewsapp.navigation.rememberNavigationState
-import com.ilyakoz.vknewsapp.news.NewsFeedScreen
+import com.ilyakoz.vknewsapp.presentation.ViewModelFactory
+import com.ilyakoz.vknewsapp.presentation.comments.CommentsScreen
+import com.ilyakoz.vknewsapp.presentation.navigation.AppNavGraph
+import com.ilyakoz.vknewsapp.presentation.navigation.rememberNavigationState
+import com.ilyakoz.vknewsapp.presentation.news.NewsFeedScreen
 
 @Composable
 fun MainScreen() {
@@ -78,7 +79,7 @@ fun MainScreen() {
                 )
 
             },
-            commentsScreeContent = {feedpost ->
+            commentsScreeContent = { feedpost ->
                 CommentsScreen(
                     onBackPressed = {
                         navigationState.navHostController.popBackStack()

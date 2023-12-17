@@ -1,4 +1,4 @@
-package com.ilyakoz.vknewsapp.navigation
+package com.ilyakoz.vknewsapp.presentation.navigation
 
 import android.net.Uri
 import com.google.gson.Gson

@@ -1,4 +1,4 @@
-package com.ilyakoz.vknewsapp.comments
+package com.ilyakoz.vknewsapp.presentation.comments
 
 import com.ilyakoz.vknewsapp.domain.entity.FeedPost
 import com.ilyakoz.vknewsapp.domain.entity.PostComment

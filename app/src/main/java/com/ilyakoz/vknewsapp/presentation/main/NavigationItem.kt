@@ -1,4 +1,4 @@
-package com.ilyakoz.vknewsapp.main
+package com.ilyakoz.vknewsapp.presentation.main
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
@@ -6,7 +6,7 @@ import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.ilyakoz.vknewsapp.R
-import com.ilyakoz.vknewsapp.navigation.Screen
+import com.ilyakoz.vknewsapp.presentation.navigation.Screen
 
 sealed class NavigationItem(
     val screen: Screen,
