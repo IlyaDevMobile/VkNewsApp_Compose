@@ -1,4 +1,4 @@
-package com.ilyakoz.vknewsapp.news
+package com.ilyakoz.vknewsapp.presentation.news
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement

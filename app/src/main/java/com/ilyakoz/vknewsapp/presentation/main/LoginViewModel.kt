@@ -1,19 +1,20 @@
-package com.ilyakoz.vknewsapp.main
+package com.ilyakoz.vknewsapp.presentation.main
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ilyakoz.vknewsapp.data.repository.NewsFeedRepositoryImpl
 import com.ilyakoz.vknewsapp.domain.usecases.CheckAuthStateUseCase
 import com.ilyakoz.vknewsapp.domain.usecases.GetAuthStateFlowUseCase
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class LoginViewModel(application: Application) : AndroidViewModel(application) {
+class LoginViewModel @Inject constructor(
+    private val getAuthStateUseCase: GetAuthStateFlowUseCase,
+    private val checkAuthStateUseCase: CheckAuthStateUseCase
+) : ViewModel() {
 
-    private val repository = NewsFeedRepositoryImpl(application)
-
-    private val getAuthStateUseCase = GetAuthStateFlowUseCase(repository)
-    private val checkAuthStateUseCase = CheckAuthStateUseCase(repository)
 
     val authState = getAuthStateUseCase()
 

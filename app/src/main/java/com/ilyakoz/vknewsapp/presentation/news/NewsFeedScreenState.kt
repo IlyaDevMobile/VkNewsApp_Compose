@@ -1,4 +1,4 @@
-package com.ilyakoz.vknewsapp.news
+package com.ilyakoz.vknewsapp.presentation.news
 
 import com.ilyakoz.vknewsapp.domain.entity.FeedPost
 
